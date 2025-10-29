@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/USERNAME/REPO.git',
+                    url: 'https://github.com/nwiuser/Jenkins-CI-CD_tp',
                     credentialsId: 'github-token'
             }
         }
@@ -73,36 +73,36 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            emailext(
-                to: "EMAIL_TO_PLACEHOLDER",
-                from: "EMAIL_FROM_PLACEHOLDER",
-                replyTo: "EMAIL_REPLY_PLACEHOLDER",
-                subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                mimeType: 'text/html',
-                body: """\
-                <p>Good news!</p>
-                <p>Build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> succeeded.</p>
-                <p>Check details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """
-            )
-        }
+    // post {
+    //     success {
+    //         emailext(
+    //             to: "EMAIL_TO_PLACEHOLDER",
+    //             from: "EMAIL_FROM_PLACEHOLDER",
+    //             replyTo: "EMAIL_REPLY_PLACEHOLDER",
+    //             subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //             mimeType: 'text/html',
+    //             body: """\
+    //             <p>Good news!</p>
+    //             <p>Build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> succeeded.</p>
+    //             <p>Check details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+    //             """
+    //         )
+    //     }
     
-        failure {
-            emailext(
-                to: "EMAIL_TO_PLACEHOLDER",
-                from: "EMAIL_FROM_PLACEHOLDER",
-                replyTo: "EMAIL_REPLY_PLACEHOLDER",
-                subject: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                mimeType: 'text/html',
-                body: """\
-                <p>Uh oh...</p>
-                <p>Build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> failed.</p>
-                <p>Check logs: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """
-            )
-        }
-    }
+    //     failure {
+    //         emailext(
+    //             to: "EMAIL_TO_PLACEHOLDER",
+    //             from: "EMAIL_FROM_PLACEHOLDER",
+    //             replyTo: "EMAIL_REPLY_PLACEHOLDER",
+    //             subject: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //             mimeType: 'text/html',
+    //             body: """\
+    //             <p>Uh oh...</p>
+    //             <p>Build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> failed.</p>
+    //             <p>Check logs: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+    //             """
+    //         )
+    //     }
+    // }
 
 }
