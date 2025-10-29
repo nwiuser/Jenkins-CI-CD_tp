@@ -36,7 +36,7 @@ pipeline {
                 stage('Test File 1') {
                     steps {
                         sh """
-                        . ${VENV_DIR}/bin/activate
+                        ${VENV_DIR}/bin/activate
                         venv/bin/python -m pytest test_app.py -v
                         """
                     }
@@ -44,7 +44,7 @@ pipeline {
                 stage('Test File 2') {
                     steps {
                         sh """
-                        . ${VENV_DIR}/bin/activate
+                        ${VENV_DIR}/bin/activate
                         venv/bin/python -m pytest test_app_2.py -v
                         """
                     }
