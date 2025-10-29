@@ -13,7 +13,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/USERNAME/REPO.git',
+                    url: 'https://github.com/nwiuser/Jenkins-CI-CD_tp',
                     credentialsId: 'github-token'
             }
         }
@@ -70,9 +70,9 @@ pipeline {
     post {
         success {
             emailext(
-                to: "EMAIL_TO_PLACEHOLDER",
-                from: "EMAIL_FROM_PLACEHOLDER",
-                replyTo: "EMAIL_REPLY_PLACEHOLDER",
+                to: "nouisserzakariae@gmail.com",
+                from: "nouisserzakaria171@gmail.com",
+                replyTo: "nouisserzakariae@gmail.com",
                 subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 mimeType: 'text/html',
                 body: """\
@@ -85,9 +85,9 @@ pipeline {
 
         failure {
             emailext(
-                to: "EMAIL_TO_PLACEHOLDER",
-                from: "EMAIL_FROM_PLACEHOLDER",
-                replyTo: "EMAIL_REPLY_PLACEHOLDER",
+                to: "nouisserzakariae@gmail.com",
+                from: "nouisserzakaria171@gmail.com",
+                replyTo: "nouisserzakariae@gmail.com",
                 subject: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 mimeType: 'text/html',
                 body: """\
