@@ -6,7 +6,8 @@ pipeline {
         VENV_DIR = ".venv"
         HOST = "0.0.0.0"
         PORT = "5000"
-        APP_MODULE = "app:app"  
+        APP_MODULE = "app:app" 
+        PYTHON = "C:\\Users\\NajibNOUISSER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
     }
 
     stages {
@@ -30,11 +31,11 @@ pipeline {
         }
 
         stage('Run Tests') {
-            when {
-                not {
-                    changeset "README.md"
-                }
-            }
+            // when {
+            //     not {
+            //         changeset "README.md"
+            //     }
+            // }
             parallel {
                 stage('Test File 1') {
                     steps {
@@ -67,35 +68,35 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            emailext(
-                to: "nouisserzakariae@gmail.com",
-                from: "nouisserzakaria171@gmail.com",
-                replyTo: "nouisserzakariae@gmail.com",
-                subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                mimeType: 'text/html',
-                body: """\
-                <p>Good news!</p>
-                <p>Build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> succeeded.</p>
-                <p>Check details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """
-            )
-        }
+    // post {
+    //     success {
+    //         emailext(
+    //             to: "nouisserzakariae@gmail.com",
+    //             from: "nouisserzakaria171@gmail.com",
+    //             replyTo: "nouisserzakariae@gmail.com",
+    //             subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //             mimeType: 'text/html',
+    //             body: """\
+    //             <p>Good news!</p>
+    //             <p>Build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> succeeded.</p>
+    //             <p>Check details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+    //             """
+    //         )
+    //     }
 
-        failure {
-            emailext(
-                to: "nouisserzakariae@gmail.com",
-                from: "nouisserzakaria171@gmail.com",
-                replyTo: "nouisserzakariae@gmail.com",
-                subject: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                mimeType: 'text/html',
-                body: """\
-                <p>Uh oh...</p>
-                <p>Build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> failed.</p>
-                <p>Check logs: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """
-            )
-        }
-    }
+    //     failure {
+    //         emailext(
+    //             to: "nouisserzakariae@gmail.com",
+    //             from: "nouisserzakaria171@gmail.com",
+    //             replyTo: "nouisserzakariae@gmail.com",
+    //             subject: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //             mimeType: 'text/html',
+    //             body: """\
+    //             <p>Uh oh...</p>
+    //             <p>Build <b>${env.JOB_NAME} #${env.BUILD_NUMBER}</b> failed.</p>
+    //             <p>Check logs: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+    //             """
+    //         )
+    //     }
+    // }
 }
