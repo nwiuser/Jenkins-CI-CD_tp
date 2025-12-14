@@ -7,7 +7,7 @@ pipeline {
         HOST = "0.0.0.0"
         PORT = "5000"
         APP_MODULE = "app:app" 
-        // PYTHON = "C:\\Users\\NajibNOUISSER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+        ${PYTHON} = "C:\\Users\\NajibNOUISSER\\AppData\\Local\\Programs\\${PYTHON}\\${PYTHON}313\\${PYTHON}.exe"
     }
 
     stages {
@@ -22,9 +22,9 @@ pipeline {
         stage('Setup Virtual Environment') {
             steps {
                 bat """
-                python -m venv ${VENV_DIR}
+                ${${PYTHON}} -m venv ${VENV_DIR}
                 call ${VENV_DIR}\\Scripts\\activate
-                python -m pip install --upgrade pip
+                ${PYTHON} -m pip install --upgrade pip
                 pip install -r requirements.txt
                 """
             }
@@ -41,7 +41,7 @@ pipeline {
                     steps {
                         bat """
                         call ${VENV_DIR}\\Scripts\\activate
-                        python -m pytest test_app.py -v
+                        ${PYTHON} -m pytest test_app.py -v
                         """
                     }
                 }
@@ -49,7 +49,7 @@ pipeline {
                     steps {
                         bat """
                         call ${VENV_DIR}\\Scripts\\activate
-                        python -m pytest test_app_2.py -v
+                        ${PYTHON} -m pytest test_app_2.py -v
                         """
                     }
                 }
