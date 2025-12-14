@@ -8,6 +8,8 @@ pipeline {
         PORT = "5000"
         APP_MODULE = "app:app" 
         PYTHON = "C:\\Users\\NajibNOUISSER\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+        VENV_PIP = '.venv\\Scripts\\pip.exe'
+        VENV_PYTHON = '.venv\\Scripts\\python.exe'
     }
 
     stages {
