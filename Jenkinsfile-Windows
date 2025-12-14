@@ -26,7 +26,7 @@ pipeline {
                 bat """
                 ${PYTHON} -m venv ${VENV_DIR}
                 call ${VENV_DIR}\\Scripts\\activate
-                ${PYTHON} -m ${VENV_PIP} install --upgrade pip
+                ${VENV_PYTHON} -m ${VENV_PIP} install --upgrade pip
                 ${VENV_PIP} install -r requirements.txt
                 """
             }
@@ -43,7 +43,7 @@ pipeline {
                     steps {
                         bat """
                         call ${VENV_DIR}\\Scripts\\activate
-                        ${PYTHON} -m pytest test_app.py -v
+                        ${VENV_PYTHON} -m pytest test_app.py -v
                         """
                     }
                 }
@@ -51,7 +51,7 @@ pipeline {
                     steps {
                         bat """
                         call ${VENV_DIR}\\Scripts\\activate
-                        ${PYTHON} -m pytest test_app_2.py -v
+                        ${VENV_PYTHON} -m pytest test_app_2.py -v
                         """
                     }
                 }
